@@ -5,6 +5,8 @@
 	background: none;
 	border: none;
 	box-shadow: none;
+
+	overflow: clip;
 }
 
 .bon-container {
@@ -46,11 +48,14 @@
 	align-items: center;
 }
 
-.col span {
+.bon-container .col span {
 	font-family: monospace;
 	font-size: 12px;
 }
 
+.container:has(h2) {
+	height: 3.8em;
+}
 h2 {
 	font-size: 1.5em;
 }
