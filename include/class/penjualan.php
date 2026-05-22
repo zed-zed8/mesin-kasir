@@ -114,4 +114,12 @@ class penjualan  extends database
 
         return $total;
     }
+
+    public function clear_penjualan(): void
+    {
+        mysqli_query(
+            $this->koneksi,
+            "DELETE FROM penjualan"
+        );
+    }
 }

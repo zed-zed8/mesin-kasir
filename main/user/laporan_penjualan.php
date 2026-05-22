@@ -6,7 +6,12 @@ include '../../include/function/numsformat.php';
 
 session_start();
 if (!isset($_SESSION['login'])) {
-    header('location:auth/login.php');
+    header('location:../../auth/login.php');
+}
+
+if (isset($_POST['clear'])) {
+    $penjualan = new penjualan();
+    $penjualan->clear_penjualan();
 }
 
 ?>
@@ -27,7 +32,6 @@ if (!isset($_SESSION['login'])) {
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/laporan_penjualan.css">
 
-
     <title>Laporan Penjualan</title>
 </head>
 
@@ -36,9 +40,15 @@ if (!isset($_SESSION['login'])) {
     include 'nav.php';
     ?>
 
-    <section id="laporan_penjualan">
+    <section id="laporan_penjualan" class="no-print">
         <div class="section-container">
-            <h2 class="text-center">Laporan Penjualan</h2>
+            <div class="container h-auto">
+                <div class="row">
+                    <div class="col justify-content-center">
+                        <h2 class="text-center">Laporan Penjualan</h2>
+                    </div>
+                </div>
+            </div>
 
             <div class="bon-container">
 
@@ -46,6 +56,7 @@ if (!isset($_SESSION['login'])) {
                 $penjualan = new penjualan();
                 foreach ($penjualan->get_data() as $value) :
                 ?>
+
                     <div class="container">
                         <h4 class="fw-normal text-center">ZidMart</h4>
                         <h4 class="fw-normal text-center">085351728442</h4>
@@ -54,18 +65,16 @@ if (!isset($_SESSION['login'])) {
                         <hr>
 
                         <div class="row">
-                            <div class="col justify-content-start">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col col-7">
-                                            <span>Nama Pembeli</span>
-                                        </div>
-                                        <div class="col col-1">
-                                            <span>:</span>
-                                        </div>
-                                        <div class="col col-3">
-                                            <span><?= $value['nama_pembeli'] ?></span>
-                                        </div>
+                            <div class="col justify-content-start container">
+                                <div class="row">
+                                    <div class="col col-7">
+                                        <span>Nama Pembeli</span>
+                                    </div>
+                                    <div class="col col-1">
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col col-3">
+                                        <span><?= $value['nama_pembeli'] ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -118,19 +127,17 @@ if (!isset($_SESSION['login'])) {
                         <hr>
 
                         <div class="row">
-                            <div class="col col-9 justify-content-start">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col col-6">
-                                            <span>Total</span>
-                                            <span>Item</span>
-                                        </div>
-                                        <div class="col col-1">
-                                            <span>:</span>
-                                        </div>
-                                        <div class="col">
-                                            <span><?= numsFormat($total_item) ?></span>
-                                        </div>
+                            <div class="col col-9 justify-content-start container">
+                                <div class="row">
+                                    <div class="col col-6">
+                                        <span>Total</span>
+                                        <span>Item</span>
+                                    </div>
+                                    <div class="col col-1">
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col">
+                                        <span><?= numsFormat($total_item) ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -159,28 +166,27 @@ if (!isset($_SESSION['login'])) {
                         <hr>
 
                         <div class="row">
-                            <div class="col justify-content-start">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span>Tanggal</span>
-                                        </div>
-                                        <div class="col col-1 ">
-                                            <span>:</span>
-                                        </div>
-                                        <div class="col">
-                                            <span><?= $value['tanggal'] ?></span>
-                                        </div>
+                            <div class="col justify-content-start container">
+                                <div class="row">
+                                    <div class="col">
+                                        <span>Tanggal</span>
+                                    </div>
+                                    <div class="col col-1 ">
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col">
+                                        <span><?= $value['tanggal'] ?></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                 <?php endforeach; ?>
 
             </div>
     </section>
+
 </body>
 
 </html>
