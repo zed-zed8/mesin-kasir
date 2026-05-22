@@ -37,6 +37,7 @@ if (isset($_POST['aksi'])) {
 
             $text = "Delete Barang Berhasil";
             $aksi = "proses";
+            $proses = "delete";
             break;
 
         default:
@@ -56,6 +57,7 @@ if (isset($_POST['tambah-barang'])) {
 
     $text = "Tambah Barang Berhasil";
     $aksi = "proses";
+    $proses = "tambah";
 }
 if (isset($_POST['edit-barang'])) {
     $id_barang = (int) $_POST['id_barang'];
@@ -68,6 +70,7 @@ if (isset($_POST['edit-barang'])) {
 
     $text = "Edit Barang Berhasil";
     $aksi = "proses";
+    $proses = "edit";
 }
 
 
@@ -164,7 +167,13 @@ if (isset($_POST['edit-barang'])) {
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="btnlogin" class="input-button success">
+                                <label for="btnlogin"
+                                    class="input-button <?= match ($proses) {
+                                                            "delete" => "danger",
+                                                            "tambah" => "success",
+                                                            "edit" => "primary",
+                                                            default => "success",
+                                                        } ?>">
                                     <span>GO</span>
                                     <input type="submit" value="Login" name="btnlogin" id="btnlogin">
                                 </label>
