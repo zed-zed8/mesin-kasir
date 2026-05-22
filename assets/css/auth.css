@@ -1,0 +1,35 @@
+section {
+	width: 100dvw;
+	height: 100dvh;
+}
+
+.section-container {
+	width: max-content;
+	height: max-content;
+
+	padding: 1em;
+
+	border: 2px ridge var(--bg-shadow);
+	box-shadow: 1px 1px 10px 12px var(--bg-shadow);
+}
+
+/** table/grid */
+.row:has(small) {
+	padding-top: 0em;
+}
+.row:has(small) * {
+	margin-top: 0em;
+}
+
+/** form  */
+small {
+	display: flex;
+	justify-content: end;
+	flex-wrap: wrap;
+	gap: 0em;
+}
+
+/*? proses dan logout */
+.input-button {
+	width: 100%;
+}

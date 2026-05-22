@@ -1,0 +1,71 @@
+.section-container {
+	width: 70em;
+	height: 30em;
+
+	background: none;
+	border: none;
+	box-shadow: none;
+
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+
+.bon-container {
+	background-color: var(--bg-lighter);
+
+	padding: 0.5em;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: fit-content;
+	gap: 1em;
+}
+
+.bon-container > .container {
+	width: 20em;
+	height: 23em;
+	background-color: var(--bg);
+
+	padding-top: 1em;
+
+	overflow-x: hidden;
+
+	border: 1px dashed black;
+}
+
+.container .row {
+	background-color: var(--bg);
+}
+
+.col {
+	background-color: var(--bg) !important;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.col span {
+	font-family: monospace;
+	font-size: 12px;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+h4 {
+	font-size: 1em;
+}
+h5 {
+	font-size: 0.8em;
+}
+
+hr {
+	border-top: 1px dashed black;
+	padding: 0px;
+	margin: 0.5em;
+}

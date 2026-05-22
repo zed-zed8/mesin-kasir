@@ -1,0 +1,28 @@
+/*? table/grid Color */
+.row:nth-child(even) .col {
+	background-color: var(--table-bg);
+}
+.row:nth-child(odd) .col {
+	background-color: var(--table-bg-light);
+}
+
+.col.container,
+.col.container .row,
+.col.container .col,
+.col .container,
+.col .container .row,
+.col .container .col {
+	background: none;
+}
+
+.row.table-head,
+.row.table-head .col {
+	background-color: var(--table-head);
+
+	border-top-left-radius: var(--table-head-border-radius);
+	border-top-right-radius: var(--table-head-border-radius);
+}
+.row.row-head,
+.row.row-head .col {
+	background-color: var(--row-head);
+}

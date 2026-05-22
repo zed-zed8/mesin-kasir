@@ -1,0 +1,94 @@
+:root {
+	--select: oklch(from var(--table-bg) calc(l - 0.05) c calc(h + 10));
+	--select-light: oklch(from var(--table-bg-light) l c calc(h + 10));
+	--select-border: var(--primary);
+	--select-option-border: var(--primary);
+
+	--select-hover: oklch(from var(--select) calc(l - 0.1) c h);
+	--select-light-hover: oklch(from var(--select-light) calc(l - 0.1) c h);
+	--select-border-hover: oklch(from var(--select-border) calc(l - 0.2) c h);
+
+	--select-arrow-down: var(--primary);
+	--select-arrow-up: var(--warning);
+}
+
+/** custom select  */
+
+.custom-select-wrapper {
+	position: relative;
+	width: 100%;
+
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.custom-option-container {
+	background: var(--select);
+	padding: 1em;
+}
+.custom-option-container span {
+	background: var(--select);
+}
+
+.custom-options {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0%;
+
+	z-index: 1;
+
+	background: var(--select) !important;
+
+	width: 100%;
+	max-height: 10em;
+
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.custom-options.open {
+	display: block;
+}
+
+.select-trigger,
+.custom-option {
+	cursor: pointer;
+	border: 4px solid var(--select-border);
+
+	display: flex;
+}
+.select-trigger:hover,
+.custom-option:hover {
+	border-color: var(--select-border-hover);
+}
+
+.row.select-trigger .col,
+.row.custom-option .col {
+	background-color: var(--select-light);
+}
+.row.select-trigger:hover .col,
+.row.custom-option:hover .col {
+	background-color: var(--select-light-hover);
+}
+
+/** svg */
+.custom-select-wrapper svg {
+	position: absolute;
+	top: 35%;
+	left: 90%;
+}
+.arrow-down {
+	color: var(--select-arrow-down);
+}
+.arrow-up {
+	color: var(--select-arrow-up);
+	display: none;
+}
+
+.open + svg .arrow-down {
+	display: none;
+}
+.open + svg .arrow-up {
+	display: block;
+}

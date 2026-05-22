@@ -1,0 +1,45 @@
+.blur_this {
+	filter: blur(1px);
+}
+
+.blur_this * {
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-webkit-user-select: none;
+	/* Safari */
+	-khtml-user-select: none;
+	/* Konqueror HTML */
+	-moz-user-select: none;
+	/* Old Firefox */
+	-ms-user-select: none;
+	/* Internet Explorer/Edge */
+	user-select: none;
+	/* Standard syntax */
+
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
+}
+
+section {
+	/* background-color: var(--bg-dark); */
+	background: linear-gradient(
+		var(--primary),
+		var(--bg-dark) 20% 80%,
+		var(--primary)
+	);
+
+	width: 100dvw;
+	height: 100dvh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.section-container {
+	padding: 1em;
+
+	width: max-content;
+	height: max-content;
+}
