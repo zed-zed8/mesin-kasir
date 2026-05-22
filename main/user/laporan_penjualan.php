@@ -77,20 +77,18 @@ if (!isset($_SESSION['login'])) {
                             <div class="col col-3 text-center">
                                 <span>Nama Barang</span>
                             </div>
-                            <div class="col col-6">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="d-grid">
-                                                <span>Jumlah</span>
-                                                <span>Barang</span>
-                                            </div>
+                            <div class="col col-6 container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="d-grid">
+                                            <span>Jumlah</span>
+                                            <span>Barang</span>
                                         </div>
-                                        <div class="col">
-                                            <div class="d-grid">
-                                                <span>Harga</span>
-                                                <span>Barang</span>
-                                            </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="d-grid">
+                                            <span>Harga</span>
+                                            <span>Barang</span>
                                         </div>
                                     </div>
                                 </div>
@@ -109,15 +107,13 @@ if (!isset($_SESSION['login'])) {
                                 <div class="col col-3 ">
                                     <span><?= $value2['nama_barang'] ?></span>
                                 </div>
-                                <div class="col col-6">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col text-center">
-                                                <span><?= numsFormat($value2['jumlah_barang']) ?></span>
-                                            </div>
-                                            <div class="col text-center">
-                                                <Span><?= numsFormat($value2['harga_barang']) ?></Span>
-                                            </div>
+                                <div class="col col-6 container">
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <span><?= numsFormat($value2['jumlah_barang']) ?></span>
+                                        </div>
+                                        <div class="col text-center">
+                                            <Span><?= numsFormat($value2['harga_barang']) ?></Span>
                                         </div>
                                     </div>
                                 </div>
