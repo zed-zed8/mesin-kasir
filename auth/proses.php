@@ -13,31 +13,21 @@ if (isset($_POST['btnlogin'])) {
     $username = $_POST['username'];
     $password = MD5($_POST['password']);
 
-    $db = new database();
-    $result = mysqli_query(
-        $db->koneksi,
-        "SELECT * FROM users WHERE username='$username' and password='$password'"
-    );
+    $users = new users();
+    $result = $users->get_user($username, $password);
 
     $row = mysqli_num_rows($result);
-    // var_dump($row);
 
     if ($row > 0) {
         $_SESSION['login'] = $password;
         $proses = "login_berhasil";
         $text = "Login Berhasil";
         $formPath = '../index.php';
-
-        // echo "<script>
-        // alert('Login Berhasil')
-        //     window.location = '../index.php'
-        // </script>";
     } else {
         // $_SESSION['login_proses'] = "gagal";
         $proses = "login_gagal";
         $text = "Login Gagal";
         $formPath = 'login.php';
-        // header('location:login.php');
     }
 }
 if (isset($_POST['btnregister'])) {
@@ -52,10 +42,6 @@ if (isset($_POST['btnregister'])) {
     $proses = "register";
     $text = "Register Berhasil";
     $formPath = 'login.php';
-    // echo "<script>
-    //     alert('Register Berhasil')
-    //         window.location = 'login.php'
-    //     </script>";
 }
 
 ?>
