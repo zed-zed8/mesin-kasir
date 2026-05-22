@@ -4,7 +4,12 @@ class penjualan  extends database
 {
     public function get_data(): mysqli_result
     {
-        $data = mysqli_query($this->koneksi, 'select * from penjualan');
+        $data = mysqli_query($this->koneksi, 'SELECT * FROM penjualan');
+        return $data;
+    }
+    public function get_latest_data(): mysqli_result
+    {
+        $data = mysqli_query($this->koneksi, 'SELECT * FROM penjualan  ORDER BY id_penjualan DESC  LIMIT 1');
         return $data;
     }
 

@@ -1,0 +1,80 @@
+.print {
+	display: none;
+}
+
+@media print {
+	/* All your print styles go here */
+	#nav,
+	section,
+	#transaksi_proses,
+	.no-print {
+		display: none !important;
+	}
+
+	.print {
+		display: block;
+
+		position: absolute;
+		z-index: 10;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+
+		background-color: var(--bg-lighter);
+
+		padding: 0.5em;
+
+		overflow-x: auto;
+		overflow-y: clip;
+
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: fit-content;
+		gap: 1em;
+	}
+	.print > .container {
+		width: 20em;
+		height: fit-content;
+		background-color: var(--bg);
+
+		padding-top: 1em;
+		border: 1px dashed black;
+
+		overflow-x: clip;
+	}
+
+	.print .container .row {
+		background-color: var(--bg);
+	}
+
+	.print .col {
+		background-color: var(--bg) !important;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.print .col span {
+		font-family: monospace;
+		font-size: 12px;
+	}
+	.print h2 {
+		font-size: 1.5em;
+	}
+	.print h4 {
+		font-size: 1em;
+	}
+	.print h5 {
+		font-size: 0.8em;
+	}
+	.print hr {
+		border-top: 1px dashed black;
+		padding: 0px;
+		margin: 0.5em;
+	}
+
+	.print.none {
+		display: none !important;
+	}
+}
