@@ -6,7 +6,8 @@
 	/* All your print styles go here */
 	#nav,
 	section,
-	#transaksi_proses {
+	#transaksi_proses,
+	.no-print {
 		display: none !important;
 	}
 
@@ -71,5 +72,9 @@
 		border-top: 1px dashed black;
 		padding: 0px;
 		margin: 0.5em;
+	}
+
+	.print.none {
+		display: none !important;
 	}
 }
