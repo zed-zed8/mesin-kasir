@@ -10,51 +10,37 @@ $formPath = "";
 
 if (isset($_POST['btnlogin'])) {
     $username = $_POST['username'];
-    $password = MD5($_POST['password']);
+    $password = $_POST['password'];
 
-    $db = new database();
-    $result = mysqli_query(
-        $db->koneksi,
-        "SELECT * FROM users WHERE username='$username' and password='$password'"
-    );
+    $users = new users();
+    $result = $users->get_user($username, $password);
 
-    $row = mysqli_num_rows($result);
-    // var_dump($row);
+    if ($result) {
+        $_SESSION['login'] = $users->get_id($password);
 
-    if ($row > 0) {
-        $_SESSION['login'] = $password;
         $proses = "login_berhasil";
         $text = "Login Berhasil";
         $formPath = '../index.php';
-
-        // echo "<script>
-        // alert('Login Berhasil')
-        //     window.location = '../index.php'
-        // </script>";
     } else {
         // $_SESSION['login_proses'] = "gagal";
         $proses = "login_gagal";
         $text = "Login Gagal";
         $formPath = 'login.php';
-        // header('location:login.php');
     }
 }
+
 if (isset($_POST['btnregister'])) {
     $username = $_POST['username'];
     $password = MD5($_POST['password']);
     $nama = $_POST['nama'];
 
     $users = new users();
-    $result = $users->create($username, $password, $nama);
+    $users->create($username, $password, $nama);
 
     $_SESSION['login'] = $password;
     $proses = "register";
     $text = "Register Berhasil";
     $formPath = 'login.php';
-    // echo "<script>
-    //     alert('Register Berhasil')
-    //         window.location = 'login.php'
-    //     </script>";
 }
 
 ?>
