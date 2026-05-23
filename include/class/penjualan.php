@@ -15,7 +15,14 @@ class penjualan  extends database
 
     public function get_data_keranjang(int $id_penjualan): array
     {
-        $keranjang = mysqli_query($this->koneksi, "SELECT * FROM keranjang WHERE id_penjualan='$id_penjualan'");
+        $sql = "SELECT * FROM keranjang WHERE id_penjualan = ?";
+        $stmt = mysqli_prepare($this->koneksi, $sql);
+
+        mysqli_stmt_bind_param($stmt, "i", $id_penjualan);
+        $result = mysqli_stmt_execute($stmt);
+
+        $keranjang = mysqli_stmt_get_result($stmt);
+
         $keranjang_belanja = [];
 
         foreach ($keranjang as $value) {
@@ -49,10 +56,12 @@ class penjualan  extends database
         $total_harga = $this->total($keranjang);
         $tanggal = date("Y-m-d");
 
-        mysqli_query(
-            $this->koneksi,
-            "INSERT INTO penjualan VALUES (NULL, '$nama_pembeli', '$total_harga', '$uang', '$tanggal')"
-        );
+        $sql = "INSERT INTO penjualan (id_penjualan, nama_pembeli, total_harga, uang, tanggal) 
+                VALUES (NULL, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($this->koneksi, $sql);
+
+        mysqli_stmt_bind_param($stmt, "siis", $nama_pembeli, $total_harga, $uang, $tanggal);
+        $result = mysqli_stmt_execute($stmt);
 
         $id_penjualan = mysqli_query(
             $this->koneksi,
@@ -71,23 +80,28 @@ class penjualan  extends database
             $id_barang = $value['id_barang'];
             $jumlah_barang = $value['jumlah_barang'];
 
-            $barang_data = mysqli_query(
-                $this->koneksi,
-                "SELECT * FROM barang WHERE id_barang = '$id_barang'"
-            );
+            $sql = "SELECT * FROM barang WHERE id_barang = ?";
+            $stmt = mysqli_prepare($this->koneksi, $sql);
+
+            mysqli_stmt_bind_param($stmt, "i", $id_barang);
+            $result = mysqli_stmt_execute($stmt);
+
+            $barang_data = mysqli_stmt_get_result($stmt);
             foreach ($barang_data as $value2) {
                 $nama_barang = $value2['nama_barang'];
                 $harga_barang = $value2['harga_barang'];
             }
 
-            mysqli_query(
-                $this->koneksi,
-                "INSERT INTO keranjang VALUES (NULL, '$id_penjualan', '$nama_barang', '$harga_barang', '$jumlah_barang')"
-            );
+            $sql = "INSERT INTO keranjang (id_keranjang, id_penjualan, nama_barang, harga_barang, jumlah_barang) 
+                    VALUES (NULL, ?, ?, ?, ?)";
+            $stmt = mysqli_prepare($this->koneksi, $sql);
+
+            mysqli_stmt_bind_param($stmt, "isii", $id_penjualan, $nama_barang, $harga_barang, $jumlah_barang);
+            $result = mysqli_stmt_execute($stmt);
         }
     }
 
-    public function total(array $keranjang)
+    public function total(array $keranjang): int|float
     {
         $total = 0;
 
@@ -95,18 +109,22 @@ class penjualan  extends database
             $id_barang = $value['id_barang'];
             $jumlah_barang = $value['jumlah_barang'];
 
-            $barang_data = mysqli_query(
-                $this->koneksi,
-                "SELECT * FROM barang WHERE id_barang = '$id_barang'"
-            );
+            $sql = "SELECT * FROM barang WHERE id_barang = ?";
+            $stmt = mysqli_prepare($this->koneksi, $sql);
+
+            mysqli_stmt_bind_param($stmt, "i", $id_barang);
+            $result = mysqli_stmt_execute($stmt);
+
+            $barang_data = mysqli_stmt_get_result($stmt);
             foreach ($barang_data as $value2) {
                 $harga_barang = $value2['harga_barang'];
-
                 $new_stok = $value2['stok'] - $jumlah_barang;
-                mysqli_query(
-                    $this->koneksi,
-                    "UPDATE barang SET stok = '$new_stok' WHERE id_barang = '$id_barang'"
-                );
+
+                $sql = "UPDATE barang SET stok = ? WHERE id_barang = ?";
+                $stmt = mysqli_prepare($this->koneksi, $sql);
+
+                mysqli_stmt_bind_param($stmt, "ii", $new_stok, $id_barang);
+                $result = mysqli_stmt_execute($stmt);
             }
 
             $total += $harga_barang * $jumlah_barang;
