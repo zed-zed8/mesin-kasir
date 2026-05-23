@@ -3,7 +3,6 @@
 include '../include/database.php';
 
 session_start();
-// echo $_POST['btnlogin'];
 
 $proses = "";
 $text = "";

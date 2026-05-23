@@ -3,13 +3,13 @@
 include '../include/database.php';
 
 
-session_start();
-if (isset($_SESSION['login_proses'])) {
-    echo "<script>
-        alert('Email atau Password Anda Salah!')
-        </script>";
-    unset($_SESSION['login_proses']);
-}
+// session_start();
+// if (isset($_SESSION['login_proses'])) {
+//     echo "<script>
+//         alert('Email atau Password Anda Salah!')
+//         </script>";
+//     unset($_SESSION['login_proses']);
+// }
 
 ?>
 
