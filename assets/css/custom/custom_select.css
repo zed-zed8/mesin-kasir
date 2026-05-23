@@ -45,6 +45,10 @@
 
 	overflow-y: auto;
 	overflow-x: hidden;
+
+	padding: 0px;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 .custom-options.open {
