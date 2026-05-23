@@ -16,9 +16,7 @@ if (isset($_POST['btnlogin'])) {
     $users = new users();
     $result = $users->get_user($username, $password);
 
-    $row = mysqli_num_rows($result);
-
-    if ($row > 0) {
+    if ($result) {
         $_SESSION['login'] = $password;
         $proses = "login_berhasil";
         $text = "Login Berhasil";
@@ -30,13 +28,14 @@ if (isset($_POST['btnlogin'])) {
         $formPath = 'login.php';
     }
 }
+
 if (isset($_POST['btnregister'])) {
     $username = $_POST['username'];
     $password = MD5($_POST['password']);
     $nama = $_POST['nama'];
 
     $users = new users();
-    $result = $users->create($username, $password, $nama);
+    $users->create($username, $password, $nama);
 
     $_SESSION['login'] = $password;
     $proses = "register";
