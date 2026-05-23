@@ -3,7 +3,6 @@
 include '../include/database.php';
 
 session_start();
-// echo $_POST['btnlogin'];
 
 $proses = "";
 $text = "";
@@ -11,13 +10,14 @@ $formPath = "";
 
 if (isset($_POST['btnlogin'])) {
     $username = $_POST['username'];
-    $password = MD5($_POST['password']);
+    $password = $_POST['password'];
 
     $users = new users();
     $result = $users->get_user($username, $password);
 
     if ($result) {
-        $_SESSION['login'] = $password;
+        $_SESSION['login'] = $users->get_id($password);
+
         $proses = "login_berhasil";
         $text = "Login Berhasil";
         $formPath = '../index.php';
