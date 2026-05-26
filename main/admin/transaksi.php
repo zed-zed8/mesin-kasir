@@ -148,7 +148,7 @@ if (isset($_POST['aksi'])) {
 
                                     <div class="custom-options container">
                                         <?php foreach ($barang->get_data() as $value): ?>
-                                            <div class="custom-option row d-flex"
+                                            <div class="custom-option row d-flex <?= $value['stok'] == 0 ? "danger" : ""; ?>"
                                                 data-value="<?= $value['id_barang'] ?>" data-stok="<?= $value['stok'] ?>">
                                                 <div class="col text-start">
                                                     <span><?= $value['nama_barang'] ?></span>
@@ -172,11 +172,12 @@ if (isset($_POST['aksi'])) {
                                 </div>
                             </div>
                             <div class="col col-3">
-                                <input type="number" class="input-jumlah" name="keranjang[<?= $i ?>][jumlah_barang]" min="0"
+                                <input type="number" class="input-jumlah" name="keranjang[<?= $i ?>][jumlah_barang]" min="1"
                                     max="<?php foreach ($barang->get_data() as $value) {
                                                 echo $value['stok'];
                                                 break;
-                                            } ?>" required>
+                                            } ?>"
+                                    required>
                             </div>
                         </div>
                     <?php endfor; ?>
