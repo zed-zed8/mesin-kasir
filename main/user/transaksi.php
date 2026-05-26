@@ -149,7 +149,7 @@ if (isset($_POST['aksi'])) {
 
                                     <div class="custom-options container">
                                         <?php foreach ($barang->get_data() as $value): ?>
-                                            <div class="custom-option row"
+                                            <div class="custom-option row d-flex <?= $value['stok'] == 0 ? "danger" : ""; ?>"
                                                 data-value="<?= $value['id_barang'] ?>" data-stok="<?= $value['stok'] ?>">
                                                 <div class="col text-start">
                                                     <span><?= $value['nama_barang'] ?></span>
