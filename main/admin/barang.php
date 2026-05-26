@@ -90,9 +90,6 @@ if (!isset($_SESSION['login'])) {
                 $barang = new barang();
 
                 foreach ($barang->get_data() as $value) {
-                    // echo "<pre>";
-                    // var_dump($value);
-                    // echo "</pre>";
                 ?>
 
                     <div class="row">
@@ -103,10 +100,10 @@ if (!isset($_SESSION['login'])) {
                                         <span><?= $value['nama_barang'] ?></span>
                                     </div>
                                     <div class="col">
-                                        <span><?= $value['harga_barang'] ?></span>
+                                        <span><?= numsFormat($value['harga_barang']) ?></span>
                                     </div>
                                     <div class="col">
-                                        <span><?= $value['stok'] ?></span>
+                                        <span><?= numsFormat($value['stok']) ?></span>
                                     </div>
                                     <div class="col">
                                         <span>
