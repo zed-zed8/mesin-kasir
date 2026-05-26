@@ -23,10 +23,24 @@ if (isset($_POST['aksi'])) {
                 $nama_barang = $value['nama_barang'];
                 $harga_barang = $value['harga_barang'];
                 $stok = $value['stok'];
+                $diskon = $value['diskon'];
             }
 
             $text = "Edit Barang";
             $aksi = "edit-barang";
+            break;
+
+        case 'edit-diskon':
+            $barang = new barang();
+            foreach ($barang->get_data_id($_POST['id_barang']) as $value) {
+                $nama_barang = $value['nama_barang'];
+                $harga_barang = $value['harga_barang'];
+                $stok = $value['stok'];
+                $diskon = $value['diskon'];
+            }
+
+            $text = "Edit Diskon";
+            $aksi = "edit-diskon";
             break;
 
         case 'delete-barang':
@@ -51,22 +65,37 @@ if (isset($_POST['tambah-barang'])) {
     $nama_barang = $_POST['nama_barang'];
     $harga_barang = (int) $_POST['harga_barang'];
     $stok = (int) $_POST['stok'];
+    $diskon = (int) $_POST['diskon'];
 
     $barang = new barang();
-    $barang->create($nama_barang, $harga_barang, $stok);
+    $barang->create($nama_barang, $harga_barang, $stok, $diskon);
 
     $text = "Tambah Barang Berhasil";
     $aksi = "proses";
     $proses = "tambah";
 }
+
 if (isset($_POST['edit-barang'])) {
     $id_barang = (int) $_POST['id_barang'];
     $nama_barang = $_POST['nama_barang'];
     $harga_barang = (int) $_POST['harga_barang'];
     $stok = (int) $_POST['stok'];
+    $diskon = (int) $_POST['diskon'];
 
     $barang = new barang();
-    $barang->edit_barang($id_barang, $nama_barang, $harga_barang, $stok);
+    $barang->edit_barang($id_barang, $nama_barang, $harga_barang, $stok, $diskon);
+
+    $text = "Edit Barang Berhasil";
+    $aksi = "proses";
+    $proses = "edit";
+}
+
+if (isset($_POST['edit-diskon'])) {
+    $id_barang = (int) $_POST['id_barang'];
+    $diskon = (int) $_POST['diskon'];
+
+    $barang = new barang();
+    $barang->edit_diskon($id_barang, $stok);
 
     $text = "Edit Barang Berhasil";
     $aksi = "proses";
@@ -127,18 +156,26 @@ if (isset($_POST['edit-barang'])) {
                         <div class="col">
                             <span>Stok</span>
                         </div>
+                        <div class="col">
+                            <span>Diskon</span>
+                        </div>
                     </div>
 
                     <form action="barang_proses.php" method="post">
                         <div class="row">
                             <div class="col">
-                                <input type="text" name="nama_barang" value="<?= $nama_barang ?? "" ?>">
+                                <input type="text" name="nama_barang" value="<?= $nama_barang ?? "" ?>"
+                                    <?= $aksi == "edit-diskon" ? "disabled" : "" ?>>
                             </div>
                             <div class="col">
-                                <input type="number" name="harga_barang" value="<?= $harga_barang ?? "" ?>" step="500" min="0">
+                                <input type="number" name="harga_barang" value="<?= $harga_barang ?? "" ?>" step="500" min="0" <?= $aksi == "edit-diskon" ? "disabled" : "" ?>>
                             </div>
                             <div class="col">
-                                <input type="number" name="stok" value="<?= $stok ?? "" ?>" min="0">
+                                <input type="number" name="stok" value="<?= $stok ?? "" ?>" min="0"
+                                    <?= $aksi == "edit-diskon" ? "disabled" : "" ?>>
+                            </div>
+                            <div class="col">
+                                <input type="number" name="diskon" value="<?= $diskon ?? 0 ?>" min="0">
                             </div>
                         </div>
 
@@ -146,7 +183,12 @@ if (isset($_POST['edit-barang'])) {
                             <div class="col text-center">
                                 <input type="hidden" name="id_barang" value="<?= $value['id_barang'] ?? "" ?>">
 
-                                <label for="barang-proses" class="input-button <?= $aksi == "tambah-barang" ? "success" : "" ?>">
+                                <label for="barang-proses" class="input-button 
+                                <?= match ($aksi) {
+                                    "tambah-barang" => "success",
+                                    "edit-barang" => "primary",
+                                    "edit-diskon" => "warning",
+                                } ?>">
                                     <span><?= $text ?></span>
                                     <input type="submit" value="barang proses" name="<?= $aksi ?>" id="barang-proses">
                                 </label>
