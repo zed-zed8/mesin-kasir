@@ -43,45 +43,6 @@ if (!isset($_SESSION['login'])) {
                 Kedalam Aplikasi Mesin Kasir <span class="brand-primary">Zid</span><span class="brand-secondary">Mart</span>
             </h3>
 
-            <span class="table-desc">Inilah barang-barang yang kita jual</span>
-            <div class="container">
-                <div class="row table-head">
-                    <div class="col">
-                        <span>No</span>
-                    </div>
-                    <div class="col">
-                        <span>Nama Barang</span>
-                    </div>
-                    <div class="col">
-                        <span>Harga Barang</span>
-                    </div>
-                    <div class="col">
-                        <span>Stok</span>
-                    </div>
-                </div>
-
-                <?php
-                $barang = new barang();
-                $no = 1;
-                foreach ($barang->get_data() as $value) : ?>
-                    <div class="row">
-                        <div class="col">
-                            <Span><?= $no ?></Span>
-                        </div>
-                        <div class="col">
-                            <span><?= $value['nama_barang'] ?></span>
-                        </div>
-                        <div class="col">
-                            <Span>RP <?= numsFormat($value['harga_barang']) ?></Span>
-                        </div>
-                        <div class="col">
-                            <span><?= numsFormat($value['stok']) ?></span>
-                        </div>
-                    </div>
-                <?php $no++;
-                endforeach; ?>
-
-            </div>
         </div>
     </section>
 </body>

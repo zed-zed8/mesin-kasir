@@ -17,6 +17,9 @@
                     <a class="nav-link" href="laporan_penjualan.php">Laporan Penjualan</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="barang.php">Barang</a>
+                </li>
+                <li class="nav-item">
                     <form action="../../index.php" method="post" class="nav-link">
                         <label for="logout" class="input-button danger">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
