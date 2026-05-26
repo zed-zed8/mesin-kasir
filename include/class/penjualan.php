@@ -29,6 +29,7 @@ class penjualan  extends database
             $nama_barang = $value['nama_barang'];
             $harga_barang = $value['harga_barang'];
             $jumlah_barang = $value['jumlah_barang'];
+            $diskon_barang = $value['diskon_barang'];
 
             // $data_barang = mysqli_query(
             //     $this->koneksi,
@@ -44,6 +45,7 @@ class penjualan  extends database
                 'jumlah_barang' =>  $jumlah_barang,
                 'harga_barang' => $harga_barang,
                 'total_harga' => $harga_barang * $jumlah_barang,
+                'diskon_barang' => $diskon_barang,
             ];
         }
 
