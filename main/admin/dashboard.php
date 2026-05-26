@@ -46,29 +46,17 @@ if (!isset($_SESSION['login'])) {
             <div class="container">
                 <div class="row table-head">
                     <div class="col">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <span>Id</span>
-                                </div>
-                                <div class="col">
-                                    <span>Username</span>
-                                </div>
-                            </div>
-                        </div>
+                        <span>Id</span>
+                    </div>
+                    <div class="col">
+                        <span>Username</span>
                     </div>
                     <!-- <div class="col">Pasword</div> -->
                     <div class="col">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <span>Nama Kasir</span>
-                                </div>
-                                <div class="col">
-                                    <span>Role</span>
-                                </div>
-                            </div>
-                        </div>
+                        <span>Nama Kasir</span>
+                    </div>
+                    <div class="col">
+                        <span>Role</span>
                     </div>
                 </div>
                 <?php
@@ -76,37 +64,24 @@ if (!isset($_SESSION['login'])) {
                 foreach ($users->get_data() as $value) { ?>
                     <div class="row">
                         <div class="col">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <span><?= $value['id_user'] ?></span>
-                                    </div>
-                                    <div class="col">
-                                        <span><?= $value['username'] ?></span>
-                                    </div>
-                                </div>
-                            </div>
+                            <span><?= $value['id_user'] ?></span>
+                        </div>
+                        <div class="col">
+                            <span><?= $value['username'] ?></span>
                         </div>
 
                         <div class="col">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <span><?= $value['nama'] ?></span>
-                                    </div>
-                                    <div class="col">
-                                        <span class="<?= match ($value['role']) {
-                                                            "user" => "text-primary",
-                                                            "admin" => "text-secondary",
-                                                            default => "text-danger",
-                                                        }; ?>">
-                                            <?= $value['role'] ?>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <span><?= $value['nama'] ?></span>
                         </div>
-
+                        <div class="col">
+                            <span class="<?= match ($value['role']) {
+                                                "user" => "text-primary",
+                                                "admin" => "text-secondary",
+                                                default => "text-danger",
+                                            }; ?>">
+                                <?= $value['role'] ?>
+                            </span>
+                        </div>
                     </div>
                 <?php
                 } ?>
