@@ -3,10 +3,9 @@
 include '../../include/database.php';
 include '../../include/function/numsformat.php';
 
-
 session_start();
 if (!isset($_SESSION['login'])) {
-    header('location:auth/login.php');
+    header('location:../../auth/login.php');
 }
 
 if (isset($_POST['aksi'])) {
@@ -44,7 +43,7 @@ if (isset($_POST['aksi'])) {
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/custom/custom_select.css">
 
-    <!-- my style -->
+    <!-- my script -->
     <script src="../../assets/js/custom_select.js" defer></script>
     <script src="../../assets/js/input.js" defer></script>
 
@@ -66,7 +65,7 @@ if (isset($_POST['aksi'])) {
                         <form action="" method="post">
                             <input type="hidden" name="jumlah" value="<?= $jumlah ?>">
                             <label for="tambah" class="input-button success">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                                     <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z" />
                                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
                                 </svg>
@@ -80,7 +79,7 @@ if (isset($_POST['aksi'])) {
                         <form action="" method="post">
                             <input type="hidden" name="jumlah" value="<?= $jumlah ?>">
                             <label for="kurang" class="input-button danger <?= $jumlah < 2 ? "disabled" : "" ?>">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
                                     <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z" />
                                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
                                 </svg>
@@ -125,14 +124,14 @@ if (isset($_POST['aksi'])) {
                                 <span><?= $i + 1 ?></span>
                             </div>
                             <div class="col col-8">
-                                <div class="custom-select-wrapper">
+                                <div class="custom-select-wrapper container">
                                     <input type="hidden" class="real-input" name="keranjang[<?= $i ?>][id_barang]"
                                         value="<?php foreach ($barang->get_data() as $value):
                                                     echo $value['id_barang'];
                                                     break;
                                                 endforeach; ?>">
 
-                                    <div class="select-trigger row">
+                                    <div class="select-trigger row d-flex">
                                         <?php foreach ($barang->get_data() as $value): ?>
                                             <div class="col text-start">
                                                 <span><?= $value['nama_barang'] ?></span>
@@ -166,18 +165,19 @@ if (isset($_POST['aksi'])) {
                                         <span></span>
                                     </div>
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svg select-arrow" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                         <path class="arrow-up" d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
                                         <path class="arrow-down" d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                                     </svg>
                                 </div>
                             </div>
                             <div class="col col-3">
-                                <input type="number" class="input-jumlah" name="keranjang[<?= $i ?>][jumlah_barang]" min="0"
-                                    max="<?php foreach ($barang->get_data() as $value):
+                                <input type="number" class="input-jumlah" name="keranjang[<?= $i ?>][jumlah_barang]" min="1"
+                                    max="<?php foreach ($barang->get_data() as $value) {
                                                 echo $value['stok'];
                                                 break;
-                                            endforeach; ?>" required>
+                                            } ?>"
+                                    required>
                             </div>
                         </div>
                     <?php endfor; ?>
