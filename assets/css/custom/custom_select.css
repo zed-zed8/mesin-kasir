@@ -76,6 +76,13 @@
 	background-color: var(--select-light-hover);
 }
 
+.custom-option.row.danger,
+.custom-option.row.danger .col,
+.custom-option.row.danger:hover .col {
+	background: var(--danger);
+	pointer-events: none;
+}
+
 /** svg */
 .custom-select-wrapper svg {
 	position: absolute;
