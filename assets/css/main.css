@@ -26,3 +26,67 @@
 .row.row-head .col {
 	background-color: var(--row-head);
 }
+
+/*? news and pendapatan */
+.home-head {
+	height: 20%;
+}
+
+.news-container {
+	height: 80%;
+	padding-top: 1%;
+
+	display: grid;
+
+	grid-auto-flow: column;
+	grid-template-columns: 1fr 20em;
+	grid-auto-rows: 1fr;
+}
+
+/** pendapatan  */
+.pendapatan-container {
+	--bg-text-color: green;
+	--bg-hasil-color: var(--success-hover);
+
+	display: grid;
+	grid-auto-columns: 1fr;
+	grid-auto-rows: 1fr;
+
+	font-size: 1.8rem;
+}
+.pendapatan-container .pendapatan-text {
+	background-color: var(--bg-text-color);
+	color: var(--success);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.pendapatan-container .pendapatan-hasil {
+	background-color: var(--bg-hasil-color);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	--text-color: var(--success);
+	--blur-color: var(--success-shadow);
+	color: var(--text-color);
+	--shadow-blur: 0.1em;
+	text-shadow:
+		1.5px 1.5px var(--shadow-blur) var(--blur-color),
+		-1.5px -1.5px var(--shadow-blur) var(--blur-color),
+		1.5px -1.5px var(--shadow-blur) var(--blur-color),
+		-1.5px 1.5px var(--shadow-blur) var(--blur-color);
+}
+
+.pendapatan-container .pendapatan-text span {
+	background: #00a693;
+	padding: 0.2em;
+	border-radius: 1em;
+}
+.pendapatan-container .pendapatan-hasil span {
+	background: #00a693;
+	padding: 0.2em;
+	border-radius: 1em;
+}

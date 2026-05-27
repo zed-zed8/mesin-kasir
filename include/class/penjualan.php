@@ -166,4 +166,18 @@ class penjualan  extends database
             "DELETE FROM penjualan"
         );
     }
+
+    public function pendapatan(): int
+    {
+        $data_penjualan = mysqli_query(
+            $this->koneksi,
+            "SELECT * FROM penjualan"
+        );
+
+        $pendapatan = 0;
+        foreach ($data_penjualan as $value) {
+            $pendapatan += $value['total_harga'];
+        }
+        return $pendapatan;
+    }
 }

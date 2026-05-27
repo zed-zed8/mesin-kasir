@@ -37,11 +37,28 @@ if (!isset($_SESSION['login'])) {
 
     <section id="index.php">
         <div class="section-container">
-            <?php $users = new users(); ?>
-            <h1 class="text-center">Selamat Datang <?= $users->get_nama($_SESSION['login']) ?></h1>
-            <h3 class="fw-normal text-center">
-                Kedalam Aplikasi Mesin Kasir <span class="brand-primary">Zid</span><span class="brand-secondary">Mart</span>
-            </h3>
+            <div class="home-head">
+                <?php $users = new users(); ?>
+                <h1 class="text-center">Selamat Datang Admin <?= $users->get_nama($_SESSION['login']) ?></h1>
+                <h3 class="fw-normal text-center">
+                    Kedalam DashBoard Mesin Kasir <span class="brand-primary">Zid</span><span class="brand-secondary">Mart</span>
+                </h3>
+            </div>
+
+
+            <div class="news-container">
+                <div class="news"></div>
+
+                <div class="pendapatan-container">
+                    <?php $penjualan = new penjualan() ?>
+                    <div class="pendapatan-text">
+                        <span class="">Pendapatan bulan ini</span>
+                    </div>
+                    <div class="pendapatan-hasil">
+                        <span class=""><?= numsFormat($penjualan->pendapatan()) ?>,00</span>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>
