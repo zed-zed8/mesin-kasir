@@ -99,14 +99,17 @@ if (isset($_POST['aksi'])) {
                         <div class="col col-8">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col text-start">
+                                    <div class="col">
                                         <span>Nama Barang</span>
                                     </div>
                                     <div class="col">
                                         <span>Harga Barang</span>
                                     </div>
-                                    <div class="col text-end">
+                                    <div class="col">
                                         <Span>Stok</Span>
+                                    </div>
+                                    <div class="col">
+                                        <Span>Diskon</Span>
                                     </div>
                                 </div>
                             </div>
@@ -133,14 +136,17 @@ if (isset($_POST['aksi'])) {
 
                                     <div class="select-trigger row d-flex">
                                         <?php foreach ($barang->get_data() as $value): ?>
-                                            <div class="col text-start">
+                                            <div class="col">
                                                 <span><?= $value['nama_barang'] ?></span>
                                             </div>
                                             <div class="col">
                                                 <span>RP<?= numsFormat($value['harga_barang']) ?></span>
                                             </div>
-                                            <div class="col text-end">
+                                            <div class="col">
                                                 <span><?= numsFormat($value['stok']) ?></span>
+                                            </div>
+                                            <div class="col">
+                                                <span><?= $value['diskon'] ?>%</span>
                                             </div>
                                         <?php break;
                                         endforeach; ?>
@@ -158,6 +164,9 @@ if (isset($_POST['aksi'])) {
                                                 </div>
                                                 <div class="col text-end">
                                                     <span><?= numsFormat($value['stok']) ?></span>
+                                                </div>
+                                                <div class="col">
+                                                    <span><?= $value['diskon'] ?>%</span>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>

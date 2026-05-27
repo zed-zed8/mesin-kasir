@@ -133,6 +133,18 @@ if (isset($_POST['clear'])) {
                                     <span><?= numsFormat($value2['total_harga']) ?></span>
                                 </div>
                             </div>
+                            <?php if ($value2['diskon_barang'] > 0): ?>
+                                <div class="row mb-3">
+                                    <div class="col col-9 justify-content-start">
+                                        <div class="d-flex flex-column me-5">
+                                            <span>diskon :</span>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <Span>-<?= numsFormat($value2['diskon_barang']) ?></Span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
 
                         <hr>

@@ -2,13 +2,13 @@
 
 class barang  extends database
 {
-    public function create(string $nama_barang, int $harga_barang, int $stok): void
+    public function create(string $nama_barang, int $harga_barang, int $stok, int $diskon): void
     {
-        $sql = "INSERT INTO barang (id_barang, nama_barang, harga_barang, stok) 
-            VALUES (NULL, ?, ?, ?)";
+        $sql = "INSERT INTO barang (id_barang, nama_barang, harga_barang, stok, diskon) 
+            VALUES (NULL, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($this->koneksi, $sql);
 
-        mysqli_stmt_bind_param($stmt, "sii", $nama_barang, $harga_barang, $stok);
+        mysqli_stmt_bind_param($stmt, "siii", $nama_barang, $harga_barang, $stok, $diskon);
         $result = mysqli_stmt_execute($stmt);
     }
 
@@ -30,12 +30,21 @@ class barang  extends database
         return $barang_data;
     }
 
-    public function edit_barang(int $id_barang, string $nama_barang, int $harga_barang, int $stok): void
+    public function edit_barang(int $id_barang, string $nama_barang, int $harga_barang, int $stok, int $diskon): void
     {
-        $sql = "UPDATE barang SET nama_barang = ?, harga_barang = ?, stok = ? WHERE id_barang = ?";
+        $sql = "UPDATE barang SET nama_barang = ?, harga_barang = ?, stok = ?, diskon = ? WHERE id_barang = ?";
         $stmt = mysqli_prepare($this->koneksi, $sql);
 
-        mysqli_stmt_bind_param($stmt, "siii", $nama_barang, $harga_barang, $stok, $id_barang);
+        mysqli_stmt_bind_param($stmt, "siiii", $nama_barang, $harga_barang, $stok, $diskon, $id_barang);
+        $result = mysqli_stmt_execute($stmt);
+    }
+
+    public function edit_diskon(int $id_barang, int $diskon): void
+    {
+        $sql = "UPDATE barang SET diskon = ? WHERE id_barang = ?";
+        $stmt = mysqli_prepare($this->koneksi, $sql);
+
+        mysqli_stmt_bind_param($stmt, "ii", $diskon, $id_barang);
         $result = mysqli_stmt_execute($stmt);
     }
 

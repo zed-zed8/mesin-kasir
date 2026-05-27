@@ -29,6 +29,8 @@ class penjualan  extends database
             $nama_barang = $value['nama_barang'];
             $harga_barang = $value['harga_barang'];
             $jumlah_barang = $value['jumlah_barang'];
+            $total_harga = $value['total_harga'];
+            $diskon_barang = $value['diskon_barang'];
 
             // $data_barang = mysqli_query(
             //     $this->koneksi,
@@ -43,7 +45,8 @@ class penjualan  extends database
                 'nama_barang' => $nama_barang,
                 'jumlah_barang' =>  $jumlah_barang,
                 'harga_barang' => $harga_barang,
-                'total_harga' => $harga_barang * $jumlah_barang,
+                'total_harga' => $total_harga,
+                'diskon_barang' => $diskon_barang,
             ];
         }
 
@@ -72,9 +75,19 @@ class penjualan  extends database
         }
 
         $this->create_keranjang($keranjang, $id_penjualan_value);
+
+        //* membenarkan total harga berdasarkan diskon 
+        $data_keranjang = $this->get_data_keranjang($id_penjualan);
+        foreach ($data_keranjang as $value) {
+            $total_harga -= $value['diskon'];
+        }
+        mysqli_query(
+            $this->koneksi,
+            "UPDATE penjualan SET total_harga = '$total_harga' WHERE id_penjualan = '$id_penjualan'"
+        );
     }
 
-    public function create_keranjang(array $keranjang, int $id_penjualan): void
+    private function create_keranjang(array $keranjang, int $id_penjualan): int
     {
         foreach ($keranjang as $value) {
             $id_barang = $value['id_barang'];
@@ -90,18 +103,31 @@ class penjualan  extends database
             foreach ($barang_data as $value2) {
                 $nama_barang = $value2['nama_barang'];
                 $harga_barang = $value2['harga_barang'];
+                $diskon = $value2['diskon'];
             }
 
-            $sql = "INSERT INTO keranjang (id_keranjang, id_penjualan, nama_barang, harga_barang, jumlah_barang) 
-                    VALUES (NULL, ?, ?, ?, ?)";
+            $total_harga = $harga_barang * $jumlah_barang;
+
+            //* diskon 
+            if ($diskon !== 0) {
+                $diskon_barang = $total_harga * ($diskon / 100);
+            } else $diskon_barang = 0;
+            $total_harga = $total_harga - $diskon_barang;
+
+
+            $sql = "INSERT INTO keranjang (id_keranjang, id_penjualan, nama_barang, harga_barang, jumlah_barang, total_harga, diskon_barang) 
+                    VALUES (NULL, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($this->koneksi, $sql);
 
-            mysqli_stmt_bind_param($stmt, "isii", $id_penjualan, $nama_barang, $harga_barang, $jumlah_barang);
+            mysqli_stmt_bind_param($stmt, "isiiii", $id_penjualan, $nama_barang, $harga_barang, $jumlah_barang, $total_harga, $diskon_barang);
             $result = mysqli_stmt_execute($stmt);
+
+            return $diskon_barang;
         }
+        return 0;
     }
 
-    public function total(array $keranjang): int|float
+    private function total(array $keranjang): int|float
     {
         $total = 0;
 
