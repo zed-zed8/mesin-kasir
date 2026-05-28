@@ -139,7 +139,7 @@ if (!isset($_SESSION['login'])) {
                                         </form>
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col col-2">
                                         <form action="barang_proses.php" method="POST">
                                             <input type="hidden" name="id_barang" value="<?= $value['id_barang'] ?>">
 

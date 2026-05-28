@@ -68,6 +68,11 @@
 	--warning-shadow: oklch(from var(--warning) 1 0.5 h / 0.3);
 	--info-shadow: oklch(from var(--info) 1 0.5 h / 0.3);
 
+	--success-bg: oklch(from var(--success) calc(l - 0.1) calc(c + 0.1) h);
+	--danger-bg: oklch(from var(--danger) calc(l - 0.1) calc(c + 0.1) h);
+	--warning-bg: oklch(from var(--warning) calc(l - 0.1) calc(c + 0.1) h);
+	--info-bg: oklch(from var(--info) calc(l - 0.1) calc(c + 0.1) h);
+
 	/** input */
 	--input: oklch(from var(--primary) 1 0 h);
 	--input-text: oklch(from var(--input) calc(1.1 - l) 0.4 calc(h + 90));
