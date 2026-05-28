@@ -45,49 +45,56 @@ if (!isset($_SESSION['login'])) {
             </div>
 
             <div class="news-container">
-                <div class="news container">
-                    <div class="row table-head">
-                        <div class="col justify-content-start">
-                            <span>News</span>
-                        </div>
-                    </div>
-                    <div class="row row-head">
-                        <div class="col col-2">
-                            <span>Tipe</span>
-                        </div>
-                        <div class="col">
-                            <span>Isi</span>
-                        </div>
-                        <div class="col col-2">
-                            <span>Tanggal</span>
+                <div class="news">
+                    <div class="container">
+                        <div class="row table-head">
+                            <div class="col justify-content-start">
+                                <span>News</span>
+                            </div>
                         </div>
                     </div>
 
-                    <?php
-                    $news = new news();
-                    foreach ($news->get_data() as $value): ?>
-                        <div class="row">
+                    <div class="container">
+                        <div class="row row-head">
                             <div class="col col-2">
-                                <span><?= ucwords($value['tipe']) ?></span>
+                                <span>Tipe</span>
                             </div>
-                            <div class="col justify-content-start">
-                                <span><?= ucfirst($value['isi']) ?></span>
+                            <div class="col">
+                                <span>Isi</span>
                             </div>
                             <div class="col col-2">
-                                <span><?= $value['tanggal'] ?></span>
+                                <span>Tanggal</span>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
+
+                    <div class="container">
+                        <?php
+                        $news = new news();
+                        foreach ($news->get_data() as $value): ?>
+                            <div class="row news-isi <?= str_replace(" ", "", $value['tipe']) ?>">
+                                <div class="col col-2">
+                                    <span><?= ucwords($value['tipe']) ?></span>
+                                </div>
+                                <div class="col justify-content-start">
+                                    <span><?= ucfirst($value['isi']) ?></span>
+                                </div>
+                                <div class="col col-2">
+                                    <span><?= $value['tanggal'] ?></span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
 
                 <div class="pendapatan-container card">
                     <?php $penjualan = new penjualan() ?>
-                    <div class="card-header">
-                        <div class="">
+                    <div class="pendapatan-text-container card-header">
+                        <div class="pendapatan-text">
                             <span class="">Pendapatan bulan ini</span>
                         </div>
                     </div>
-                    <div class="card-body d-flex justify-content-center align-items-center">
+                    <div class="pendapatan-hasil-container card-body">
                         <div class="pendapatan-hasil">
                             <span class=""><?= numsFormat($penjualan->pendapatan()) ?>,00</span>
                         </div>

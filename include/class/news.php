@@ -2,7 +2,7 @@
 
 enum tipe_news: string
 {
-    case tambah_barang = "barang Baru";
+    case tambah_barang = "barang baru";
     case update_nama = "nama baru";
     case update_harga = "harga baru";
     case update_diskon = "update diskon";
@@ -39,7 +39,7 @@ class news extends database
                     $isi = $value['nama_barang'] . " mendapat restok. Stoknya dari " . $value['stok_old'] . " menjadi " . numsFormat($value['stok']);
                     break;
                 case tipe_news::new_diskon:
-                    $isi = $value['nama_barang'] . " mendapat diskon " . $value['diskon'] . "%";
+                    $isi = $value['nama_barang_old'] . " mendapat diskon " . $value['diskon'] . "%";
                     break;
 
                 case tipe_news::delete_barang:
