@@ -45,7 +45,40 @@ if (!isset($_SESSION['login'])) {
             </div>
 
             <div class="news-container">
-                <div class="news"></div>
+                <div class="news container">
+                    <div class="row table-head">
+                        <div class="col justify-content-start">
+                            <span>News</span>
+                        </div>
+                    </div>
+                    <div class="row row-head">
+                        <div class="col col-2">
+                            <span>Tipe</span>
+                        </div>
+                        <div class="col">
+                            <span>Isi</span>
+                        </div>
+                        <div class="col col-2">
+                            <span>Tanggal</span>
+                        </div>
+                    </div>
+
+                    <?php
+                    $news = new news();
+                    foreach ($news->get_data() as $value): ?>
+                        <div class="row">
+                            <div class="col col-2">
+                                <span><?= ucwords($value['tipe']) ?></span>
+                            </div>
+                            <div class="col justify-content-start">
+                                <span><?= ucfirst($value['isi']) ?></span>
+                            </div>
+                            <div class="col col-2">
+                                <span><?= $value['tanggal'] ?></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
 
                 <div class="pendapatan-container card">
                     <?php $penjualan = new penjualan() ?>
