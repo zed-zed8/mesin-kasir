@@ -49,13 +49,17 @@ if (!isset($_SESSION['login'])) {
             <div class="news-container">
                 <div class="news"></div>
 
-                <div class="pendapatan-container">
+                <div class="pendapatan-container card">
                     <?php $penjualan = new penjualan() ?>
-                    <div class="pendapatan-text">
-                        <span class="">Pendapatan bulan ini</span>
+                    <div class="card-header">
+                        <div class="">
+                            <span class="">Pendapatan bulan ini</span>
+                        </div>
                     </div>
-                    <div class="pendapatan-hasil">
-                        <span class=""><?= numsFormat($penjualan->pendapatan()) ?>,00</span>
+                    <div class="card-body d-flex justify-content-center align-items-center">
+                        <div class="pendapatan-hasil">
+                            <span class=""><?= numsFormat($penjualan->pendapatan()) ?>,00</span>
+                        </div>
                     </div>
                 </div>
             </div>
