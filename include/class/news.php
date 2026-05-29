@@ -8,6 +8,7 @@ enum tipe_news: string
     case update_diskon = "update diskon";
     case new_diskon = "diskon baru";
     case restok = "restok";
+    case stok_habis = "stok habis";
     case delete_barang = "barang dihapus";
 }
 
@@ -32,11 +33,14 @@ class news extends database
                 case tipe_news::update_harga:
                     $isi = "Harga " . $value['nama_barang_old'] . " berubah dari RP" . numsFormat($value['harga_barang_old']) . " menjadi RP" . numsFormat($value['harga_barang']);
                     break;
-                case tipe_news::update_diskon:
-                    $isi = "Diskon " . $value['nama_barang_old'] . " berubah dari " . $value['diskon_old'] . "% menjadi " . $value['diskon'] . "%";
-                    break;
                 case tipe_news::restok:
                     $isi = $value['nama_barang'] . " mendapat restok. Stoknya dari " . $value['stok_old'] . " menjadi " . numsFormat($value['stok']);
+                    break;
+                case tipe_news::stok_habis:
+                    $isi = "Stok " . $value['nama_barang'] . " habis";
+                    break;
+                case tipe_news::update_diskon:
+                    $isi = "Diskon " . $value['nama_barang_old'] . " berubah dari " . $value['diskon_old'] . "% menjadi " . $value['diskon'] . "%";
                     break;
                 case tipe_news::new_diskon:
                     $isi = $value['nama_barang_old'] . " mendapat diskon " . $value['diskon'] . "%";

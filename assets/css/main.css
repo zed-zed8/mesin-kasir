@@ -85,6 +85,9 @@
 .news-isi.restok .col:first-child {
 	background: var(--warning-bg);
 }
+.news-isi.stokhabis .col:first-child {
+	background: var(--danger);
+}
 .news-isi.barangdihapus .col:first-child {
 	background: var(--danger);
 }

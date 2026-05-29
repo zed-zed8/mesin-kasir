@@ -38,6 +38,18 @@ class barang  extends database
         return $barang_data;
     }
 
+    public function get_data_nama(string $nama_barang): mysqli_result|bool
+    {
+        $sql = "SELECT * FROM barang WHERE nama_barang = ?";
+        $stmt = mysqli_prepare($this->koneksi, $sql);
+
+        mysqli_stmt_bind_param($stmt, "s", $nama_barang);
+        $result = mysqli_stmt_execute($stmt);
+
+        $barang_data = mysqli_stmt_get_result($stmt);
+        return $barang_data;
+    }
+
     public function edit_barang(int $id_barang, string $nama_barang, int $harga_barang, int $stok, int $diskon): void
     {
         $barang_data = $this->get_data_id($id_barang);
