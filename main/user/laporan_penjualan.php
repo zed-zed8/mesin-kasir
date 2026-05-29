@@ -122,6 +122,18 @@ if (isset($_POST['clear'])) {
                                     <span><?= numsFormat($value2['total_harga']) ?></span>
                                 </div>
                             </div>
+                            <?php if ($value2['diskon_barang'] > 0): ?>
+                                <div class="row mb-3">
+                                    <div class="col col-9 justify-content-start">
+                                        <div class="d-flex flex-column me-5">
+                                            <span>diskon :</span>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <Span>-<?= numsFormat($value2['diskon_barang']) ?></Span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
 
                         <hr>
@@ -140,6 +152,30 @@ if (isset($_POST['clear'])) {
                                         <span><?= numsFormat($total_item) ?></span>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col col-3 ">
+                                <span><?= numsFormat($value['total_belanja']) ?></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-9 justify-content-end">
+                                <span>Pajak PPN</span>
+                            </div>
+                            <div class="col col-3">
+                                <span><?= $value['pajak'] ?>%</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-9 justify-content-start">
+                                <span>Total Pajak</span>
+                            </div>
+                            <div class="col col-3 ">
+                                <span><?= $value['total_belanja'] * ($value['pajak'] / 100) ?></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-9 justify-content-start">
+                                <span>Total Harga</span>
                             </div>
                             <div class="col col-3 ">
                                 <span><?= numsFormat($value['total_harga']) ?></span>
