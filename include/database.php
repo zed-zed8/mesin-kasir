@@ -22,6 +22,7 @@ class database
 }
 
 //? database table
+include 'class/news.php';
 include 'class/users.php';
 include 'class/barang.php';
 include 'class/penjualan.php';

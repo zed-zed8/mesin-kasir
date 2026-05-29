@@ -77,14 +77,28 @@ class penjualan  extends database
         $this->create_keranjang($keranjang, $id_penjualan_value);
 
         //* membenarkan total harga berdasarkan diskon 
-        $data_keranjang = $this->get_data_keranjang($id_penjualan);
+        $data_keranjang = $this->get_data_keranjang($id_penjualan_value);
         foreach ($data_keranjang as $value) {
-            $total_harga -= $value['diskon'];
+            $total_harga -= $value['diskon_barang'];
         }
         mysqli_query(
             $this->koneksi,
-            "UPDATE penjualan SET total_harga = '$total_harga' WHERE id_penjualan = '$id_penjualan'"
+            "UPDATE penjualan SET total_harga = '$total_harga' WHERE id_penjualan = '$id_penjualan_value'"
         );
+
+        //* news jika stok habis
+        $barang = new barang();
+        $news = new news();
+        foreach ($this->get_data_keranjang($id_penjualan_value) as $value) {
+            foreach ($barang->get_data_nama($value['nama_barang']) as $value2) {
+                if ($value2['stok'] == 0) {
+                    $barang_data = [[
+                        "nama_barang" => $value['nama_barang'],
+                    ]];
+                    $news->create($barang_data, tipe_news::stok_habis);
+                }
+            }
+        }
     }
 
     private function create_keranjang(array $keranjang, int $id_penjualan): int

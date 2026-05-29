@@ -40,26 +40,89 @@
 
 	grid-auto-flow: column;
 	grid-template-columns: 1fr 20em;
-	grid-auto-rows: 1fr;
+	grid-auto-rows: 100%;
+	gap: 1em;
+}
+
+/** news */
+.news {
+	overflow-y: clip;
+	background: #0a0c0d;
+}
+.news > .container:nth-child(3) {
+	height: 70%;
+	overflow-y: auto;
+}
+
+.news-isi .col:first-child span {
+	color: var(--text);
+}
+.news-isi .col:nth-child(2) span {
+	color: var(--text);
+}
+.news-isi .col:last-child span {
+	color: var(--text);
+}
+.news-isi .col:last-child {
+	background: var(--warning-bg);
+}
+
+.news-isi.barangbaru .col:first-child {
+	background: var(--success);
+}
+.news-isi.namabaru .col:first-child {
+	background: var(--success-bg);
+}
+.news-isi.hargabaru .col:first-child {
+	background: var(--warning);
+}
+.news-isi.updatediskon .col:first-child {
+	background: var(--info-bg);
+}
+.news-isi.diskonbaru .col:first-child {
+	background: var(--info);
+}
+.news-isi.restok .col:first-child {
+	background: var(--warning-bg);
+}
+.news-isi.stokhabis .col:first-child {
+	background: var(--danger);
+}
+.news-isi.barangdihapus .col:first-child {
+	background: var(--danger);
 }
 
 /** pendapatan  */
 .pendapatan-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+
 	text-align: center;
-	font-size: calc(1.3rem + 0.6vw);
+	font-size: 1.5rem;
 }
 
-.pendapatan-container .card-header {
+.pendapatan-text-container {
 	background: var(--success-bg);
+	padding: 0.5em 1em;
 }
 .pendapatan-text {
 	border: 0.1em solid var(--success);
 	border-radius: 1em;
 
-	padding: 0.2em;
+	margin-top: 1em;
 	margin-bottom: 1em;
 }
 
+.pendapatan-hasil-container {
+	flex: 1 1 auto;
+	padding: 1rem 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .pendapatan-hasil {
 	color: var(--success);
 	--blur-color: var(--success-shadow);
