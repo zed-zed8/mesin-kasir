@@ -47,7 +47,6 @@
 /** news */
 .news {
 	overflow-y: clip;
-	background: #0a0c0d;
 }
 .news > .container:nth-child(3) {
 	height: 70%;
