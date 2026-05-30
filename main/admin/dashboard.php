@@ -9,6 +9,12 @@ if (!isset($_SESSION['login'])) {
     header('location:../../auth/login.php');
 }
 
+
+if (isset($_POST['aksi'])) {
+    $news = new news();
+    $news->clear_news();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +57,14 @@ if (!isset($_SESSION['login'])) {
                             <div class="col justify-content-start">
                                 <span>News</span>
                             </div>
+                            <div class="col justify-content-end">
+                                <form action="" method="post">
+                                    <label for="clear" class="input-button danger p-1">
+                                        <span>&nbsp; Clear News</span>
+                                        <input type="submit" name="aksi" id="clear" value="clear">
+                                    </label>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -84,6 +98,13 @@ if (!isset($_SESSION['login'])) {
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                        <?php if ($news->get_data()->num_rows == 0): ?>
+                            <div class="row">
+                                <div class="col">
+                                    <span class="h1 text-secondary">Tidak Ada Berita Hari Ini</span>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 

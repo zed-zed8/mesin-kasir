@@ -56,16 +56,16 @@ class penjualan  extends database
 
     public function create(array $keranjang, string $nama_pembeli, int $uang): void
     {
-        $total_keranjang = $this->total($keranjang);
+        $total_belanja = $this->total($keranjang);
         $pajak = 11;
-        $total_harga = $total_keranjang + ($total_keranjang * ($pajak / 100));
+        $total_harga = $total_belanja + ($total_belanja * ($pajak / 100));
         $tanggal = date("Y-m-d");
 
-        $sql = "INSERT INTO penjualan (id_penjualan, nama_pembeli, total_keranjang, pajak, total_harga, uang, tanggal) 
+        $sql = "INSERT INTO penjualan (id_penjualan, nama_pembeli, total_belanja, pajak, total_harga, uang, tanggal) 
                 VALUES (NULL, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($this->koneksi, $sql);
 
-        mysqli_stmt_bind_param($stmt, "siiiis", $nama_pembeli, $total_keranjang, $pajak, $total_harga, $uang, $tanggal);
+        mysqli_stmt_bind_param($stmt, "siiiis", $nama_pembeli, $total_belanja, $pajak, $total_harga, $uang, $tanggal);
         $result = mysqli_stmt_execute($stmt);
 
         $id_penjualan = mysqli_query(
@@ -81,11 +81,11 @@ class penjualan  extends database
         //* membenarkan total harga berdasarkan diskon 
         $data_keranjang = $this->get_data_keranjang($id_penjualan_value);
         foreach ($data_keranjang as $value) {
-            $total_keranjang -= $value['diskon_barang'];
+            $total_belanja -= $value['diskon_barang'];
         }
         mysqli_query(
             $this->koneksi,
-            "UPDATE penjualan SET total_keranjang = '$total_keranjang' WHERE id_penjualan = '$id_penjualan_value'"
+            "UPDATE penjualan SET total_belanja = '$total_belanja' WHERE id_penjualan = '$id_penjualan_value'"
         );
 
         //* news jika stok habis

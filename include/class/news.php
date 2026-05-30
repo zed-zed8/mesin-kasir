@@ -69,4 +69,12 @@ class news extends database
         $data = mysqli_query($this->koneksi, "SELECT * FROM news");
         return $data;
     }
+
+    public function clear_news()
+    {
+        mysqli_query(
+            $this->koneksi,
+            "DELETE from news"
+        );
+    }
 }
