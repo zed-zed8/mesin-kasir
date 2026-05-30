@@ -49,7 +49,7 @@
 	overflow-y: clip;
 }
 .news > .container:nth-child(3) {
-	height: 70%;
+	height: 60%;
 	overflow-y: auto;
 }
 

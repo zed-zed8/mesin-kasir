@@ -45,6 +45,17 @@ if ($_POST['aksi'] == "beli") {
         <div class="section-container">
             <div class="container">
                 <div class="row">
+                    <div class="col justify-content-start p-2">
+                        <button id="btn-print" class="btn btn-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+                                <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                                <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
+                            </svg>
+                            <span>Print Struk</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col">
                         <h3 class="display-3 fw-bolder">
                             Transaksi Berhasil
@@ -195,14 +206,18 @@ if ($_POST['aksi'] == "beli") {
                     </div>
                 </div>
             <?php endforeach; ?>
-            <script>
-                window.onload = function() {
-                    window.print();
-                };
-            </script>
         </div>
     </div>
 
+    <script>
+        // window.onload = function() {
+        //     window.print();
+        // };
+        btnPrint = document.getElementById("btn-print");
+        btnPrint.addEventListener("click", function() {
+            window.print();
+        });
+    </script>
 
     <script>
         document.addEventListener("keydown", (event) => {
