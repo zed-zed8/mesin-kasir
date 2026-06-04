@@ -53,14 +53,6 @@ if (!isset($_SESSION['login'])) {
                             <div class="col justify-content-start">
                                 <span>News</span>
                             </div>
-                            <div class="col justify-content-end">
-                                <form action="" method="post">
-                                    <label for="clear" class="input-button danger p-1">
-                                        <span>&nbsp; Clear News</span>
-                                        <input type="submit" name="aksi" id="clear" value="clear">
-                                    </label>
-                                </form>
-                            </div>
                         </div>
                     </div>
 
